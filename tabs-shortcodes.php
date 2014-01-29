@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Tab Shortcodes
  * Description: Adds a few shortcodes to allow for tabbed content.
- * Version: 0.1
+ * Version: 0.2
  * Author: Phil Buchanan
  * Author URI: http://philbuchanan.com
  */
@@ -18,6 +18,9 @@ class Tab_Shortcodes {
 	function __construct() {
 	
 		$basename = plugin_basename(__FILE__);
+		
+		# Load text domain
+		load_plugin_textdomain('tabs_shortcodes', false, dirname($basename) . '/languages/');
 		
 		# Register JavaScript
 		add_action('wp_enqueue_scripts', array(__CLASS__, 'register_script'));
@@ -41,14 +44,14 @@ class Tab_Shortcodes {
 	
 	}
 	
-	# Registers the minified accordion JavaScript file
+	# Registers the minified tabs JavaScript file
 	static function register_script() {
 	
-		wp_register_script('tab-shortcodes-script', plugins_url('tabs.js', __FILE__), array(), '0.1', true);
+		wp_register_script('tab-shortcodes-script', plugins_url('tabs.js', __FILE__), array(), '0.2', true);
 	
 	}
 	
-	# Prints the minified accordion JavaScript file in the footer
+	# Prints the minified tabs JavaScript file in the footer
 	static function print_script() {
 	
 		# Check to see if shortcodes are used on page
@@ -118,7 +121,7 @@ class Tab_Shortcodes {
 	
 		array_push($links, sprintf('<a href="%s">%s</a>',
 			'http://wordpress.org/plugins/tabs-shortcodes/',
-			__('Documentation', 'accordion_shortcodes')
+			__('Documentation', 'tabs_shortcodes')
 		));
 		
 		return $links;
