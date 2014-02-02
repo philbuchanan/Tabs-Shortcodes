@@ -60,7 +60,7 @@ class Tab_Shortcodes {
 			
 			# Generate notice
 			$html = '<div class="updated"><p>';
-			$html .= __('Make sure to <a href="http://wordpress.org/plugins/tabs-shortcodes/other_notes/">add some CSS</a> to your stylesheet to ensure the tabs shortcodes display properly.', 'tabs_shortcodes');
+			$html .= __('<strong>Important</strong>: Make sure to <a href="http://wordpress.org/plugins/tabs-shortcodes/other_notes/">add some CSS</a> to your themes stylesheet to ensure the tabs shortcodes display properly.', 'tabs_shortcodes');
 			$html .= '</p></div>';
 			
 			# Display notice
