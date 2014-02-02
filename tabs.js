@@ -25,6 +25,7 @@
 	
 	},
 	
+	// Called when a tab item is clicked
 	tabClickHandler = function(event) {
 	
 		var currentActiveTab     = document.querySelector('ul.tabs a.active'),
@@ -32,18 +33,18 @@
 			selectSection        = document.querySelector(this.getAttribute('href')),
 			i;
 		
-		// Prevent default click
+		// Prevent default action
 		event.preventDefault();
 		
 		// Remove active tab
 		if (currentActiveTab) {
 			currentActiveTab.removeAttribute('class');
-			currentActiveSection.setAttribute('class', 'tab');
+			currentActiveSection.className = 'tab';
 		}
 		
 		// Set new active tab
-		this.setAttribute('class', 'active');
-		selectSection.setAttribute('class', 'tab active');
+		this.className = 'active';
+		selectSection.className = 'tab active';
 	
 	};
 	

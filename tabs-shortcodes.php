@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Tab Shortcodes
  * Description: Adds a few shortcodes to allow for tabbed content.
- * Version: 0.2
+ * Version: 1.0
  * Author: Phil Buchanan
  * Author URI: http://philbuchanan.com
  */
@@ -34,20 +34,46 @@ class Tab_Shortcodes {
 		
 		# Add link to documentation
 		add_filter("plugin_action_links_$basename", array(__CLASS__, 'add_documentation_link'));
+		
+		# Add activation notice
+		register_activation_hook(__FILE__, array(__CLASS__, 'install'));
+		add_action('admin_notices', array(__CLASS__, 'plugin_activation_notice'));
 	
 	}
 	
-	# Checks for boolean value
-	static function parse_boolean($value) {
+	# Installation function
+	static function install() {
 	
-		return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+		# Add notice option
+		add_option('tabs_shortcodes_notice', 1, '', 'no');
+	
+	}
+	
+	# Add the activation notice
+	static function plugin_activation_notice() {
+	
+		# Check for option before displaying notice
+		if (get_option('tabs_shortcodes_notice')) {
+		
+			# We can now delete the option since the notice will be displayed
+			delete_option('tabs_shortcodes_notice');
+			
+			# Generate notice
+			$html = '<div class="updated"><p>';
+			$html .= __('Make sure to <a href="http://wordpress.org/plugins/tabs-shortcodes/other_notes/">add some CSS</a> to your stylesheet to ensure the tabs shortcodes display properly.', 'tabs_shortcodes');
+			$html .= '</p></div>';
+			
+			# Display notice
+			echo $html;
+		
+		}
 	
 	}
 	
 	# Registers the minified tabs JavaScript file
 	static function register_script() {
 	
-		wp_register_script('tab-shortcodes-script', plugins_url('tabs.js', __FILE__), array(), '0.2', true);
+		wp_register_script('tab-shortcodes-script', plugins_url('tabs.min.js', __FILE__), array(), '1.0', true);
 	
 	}
 	

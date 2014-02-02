@@ -5,7 +5,7 @@ Donate Link: http://philbuchanan.com/
 Tags: tab, tabs, shortcodes
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 0.2
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,9 +49,9 @@ This will output the following HTML:
     <section id="tab-1" class="tab active">Content for tab one goes here.</section>
     <section id="tab-2" class="tab">Content for tab two goes here.</section>
 
-= Advanced Settings =
+= Settings =
 
-There are no settings for the plugin. The only additional setup you may want to do is add [some css](http://wordpress.org/plugins/tabs-shortcodes/other_notes/) to style the tabs however you'd like.
+There are no settings for the plugin. The only additional setup you will need to do is [add some css](http://wordpress.org/plugins/tabs-shortcodes/other_notes/) to style the tabs however you'd like. Adding the CSS is very important as the tabs will not display as tabs until you do so.
 
 == Installation ==
 1. Upload the 'tabs-shortcodes' folder to the '/wp-content/plugins/' directory.
@@ -63,7 +63,7 @@ There are no settings for the plugin. The only additional setup you may want to 
 
 = Sample CSS =
 
-Here is some sample CSS to get you started if you want to customize the look and feel of the tabs.
+Here is some sample CSS to get you started. Make adjustments as necessary if you want to customize the look and feel of the tabs.
 
     /* Tabs Styles */
     ul.tabs {
