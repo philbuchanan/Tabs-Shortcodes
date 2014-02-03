@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Tab Shortcodes
+ * Plugin Name: Tabs Shortcodes
  * Description: Adds a few shortcodes to allow for tabbed content.
  * Version: 1.0
  * Author: Phil Buchanan
@@ -8,9 +8,9 @@
  */
 
 # Make sure to not redeclare the class
-if (!class_exists('Tab_Shortcodes')) :
+if (!class_exists('Tabs_Shortcodes')) :
 
-class Tab_Shortcodes {
+class Tabs_Shortcodes {
 
 	static $add_script;
 	static $tab_titles;
@@ -73,7 +73,7 @@ class Tab_Shortcodes {
 	# Registers the minified tabs JavaScript file
 	static function register_script() {
 	
-		wp_register_script('tab-shortcodes-script', plugins_url('tabs.min.js', __FILE__), array(), '1.0', true);
+		wp_register_script('tabs-shortcodes-script', plugins_url('tabs.min.js', __FILE__), array(), '1.0', true);
 	
 	}
 	
@@ -83,7 +83,7 @@ class Tab_Shortcodes {
 		# Check to see if shortcodes are used on page
 		if (!self::$add_script) return;
 		
-		wp_enqueue_script('tab-shortcodes-script');
+		wp_enqueue_script('tabs-shortcodes-script');
 	
 	}
 	
@@ -156,6 +156,6 @@ class Tab_Shortcodes {
 
 }
 
-$Tab_Shortcodes = new Tab_Shortcodes;
+$Tabs_Shortcodes = new Tabs_Shortcodes;
 
 endif;
