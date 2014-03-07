@@ -5,7 +5,7 @@ Donate Link: http://philbuchanan.com/
 Tags: tab, tabs, shortcodes
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ Adds a few shortcodes to allow for tabbed content.
 = Features =
 
 * Adds two shortcodes for adding a tabbed interface to your site
-* No default CSS added
+* No default CSS added (you will **need** to [add your own](http://wordpress.org/plugins/tabs-shortcodes/other_notes/))
 * Only adds JavaScript on pages that use the shortcodes
 * Does not require jQuery
 
@@ -96,9 +96,15 @@ Here is some sample CSS to get you started. Make adjustments as necessary if you
 For bug reports or feature requests or if you'd like to contribute to the plugin you can check everything out on [Github](https://github.com/philbuchanan/Tabs-Shortcodes/).
 
 == Changelog ==
+= 1.0.1 =
+* Drastically simplified JavaScript
+
 = 1.0 =
 * Initial release
 
 == Upgrade Notice ==
+= 1.0.1 =
+Drastically simplified JavaScript.
+
 = 1.0 =
 Initial release.

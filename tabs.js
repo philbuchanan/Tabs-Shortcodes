@@ -1,53 +1,18 @@
 (function() {
 	'use strict';
 	
-	var tabLinks = document.querySelectorAll('ul.tabs a'),
-		i,
+	document.getElementById('tabs').onclick = function(event) {
 	
-	init = function() {
-	
-		// Loop through event tabs and add click handlers
-		for (i = 0; i < tabLinks.length; i += 1) {
-			addEvent(tabLinks.item(i), 'click', tabClickHandler);
-		}
-	
-	},
-	
-	// Multi-browser support for event listeners
-	addEvent = function(elem, event, func) {
-	
-		if (elem.addEventListener) {
-			elem.addEventListener(event, func, false);
-		}
-		else {
-			elem.attachEvent('on' + event, func);
-		}
-	
-	},
-	
-	// Called when a tab item is clicked
-	tabClickHandler = function(event) {
-	
-		var currentActiveTab     = document.querySelector('ul.tabs a.active'),
-			currentActiveSection = document.querySelector('section.tab.active'),
-			selectSection        = document.querySelector(this.getAttribute('href')),
-			i;
-		
-		// Prevent default action
 		event.preventDefault();
 		
 		// Remove active tab
-		if (currentActiveTab) {
-			currentActiveTab.removeAttribute('class');
-			currentActiveSection.className = 'tab';
-		}
+		document.querySelector('ul.tabs a.active').removeAttribute('class');
+		document.querySelector('section.tab.active').className = 'tab';
 		
 		// Set new active tab
-		this.className = 'active';
-		selectSection.className = 'tab active';
+		event.target.className = 'active';
+		document.querySelector(event.target.getAttribute('href')).className = 'tab active';
 	
 	};
-	
-	init();
 
 }());

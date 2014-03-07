@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Tabs Shortcodes
  * Description: Adds a few shortcodes to allow for tabbed content.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Phil Buchanan
  * Author URI: http://philbuchanan.com
  */
@@ -35,7 +35,7 @@ class Tabs_Shortcodes {
 		# Add link to documentation
 		add_filter("plugin_action_links_$basename", array(__CLASS__, 'add_documentation_link'));
 		
-		# Add activation notice
+		# Add activation notice (advising user to add CSS)
 		register_activation_hook(__FILE__, array(__CLASS__, 'install'));
 		add_action('admin_notices', array(__CLASS__, 'plugin_activation_notice'));
 	
@@ -73,7 +73,8 @@ class Tabs_Shortcodes {
 	# Registers the minified tabs JavaScript file
 	static function register_script() {
 	
-		wp_register_script('tabs-shortcodes-script', plugins_url('tabs.min.js', __FILE__), array(), '1.0', true);
+		$min = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
+		wp_register_script('tabs-shortcodes-script', plugins_url('tabs' . $min . '.js', __FILE__), array(), '1.0.1', true);
 	
 	}
 	
@@ -102,7 +103,7 @@ class Tabs_Shortcodes {
 		$tab_content = do_shortcode($content);
 		
 		# Start the tab navigation
-		$out = '<ul class="tabs">';
+		$out = '<ul id="tabs" class="tabs">';
 		
 		# Loop through tab titles
 		foreach (self::$tab_titles as $key => $title) {
