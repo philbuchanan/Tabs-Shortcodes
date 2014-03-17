@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Tabs Shortcodes
  * Description: Adds a few shortcodes to allow for tabbed content.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Phil Buchanan
  * Author URI: http://philbuchanan.com
  */
@@ -74,7 +74,7 @@ class Tabs_Shortcodes {
 	static function register_script() {
 	
 		$min = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
-		wp_register_script('tabs-shortcodes-script', plugins_url('tabs' . $min . '.js', __FILE__), array(), '1.0.1', true);
+		wp_register_script('tabs-shortcodes-script', plugins_url('tabs' . $min . '.js', __FILE__), array(), '1.0.2', true);
 	
 	}
 	
@@ -97,7 +97,7 @@ class Tabs_Shortcodes {
 		# Create empty titles array
 		self::$tab_titles = array();
 		
-		extract(shortcode_atts(array(), $atts));
+		extract(shortcode_atts(array(), $atts, 'tabs'));
 		
 		# Get all individual tabs content
 		$tab_content = do_shortcode($content);
@@ -128,7 +128,7 @@ class Tabs_Shortcodes {
 	
 		extract(shortcode_atts(array(
 			'title' => ''
-		), $atts));
+		), $atts, 'tab'));
 		
 		# Add the title to the titles array
 		array_push(self::$tab_titles, $title);
