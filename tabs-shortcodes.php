@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Tabs Shortcodes
  * Description: Adds a few shortcodes to allow for tabbed content.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Phil Buchanan
  * Author URI: http://philbuchanan.com
  */
@@ -74,7 +74,7 @@ class Tabs_Shortcodes {
 	static function register_script() {
 	
 		$min = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
-		wp_register_script('tabs-shortcodes-script', plugins_url('tabs' . $min . '.js', __FILE__), array(), '1.0.2', true);
+		wp_register_script('tabs-shortcodes-script', plugins_url('tabs' . $min . '.js', __FILE__), array(), '1.0.3', true);
 	
 	}
 	

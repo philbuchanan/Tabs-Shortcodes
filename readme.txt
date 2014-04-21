@@ -4,8 +4,8 @@ Author URI: http://philbuchanan.com/
 Donate Link: http://philbuchanan.com/
 Tags: tab, tabs, shortcodes
 Requires at least: 3.3
-Tested up to: 3.8
-Stable tag: 1.0.2
+Tested up to: 3.9
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Adds a few shortcodes to allow for tabbed content.
 == Description ==
 Adds a few shortcodes to allow for tabbed content.
 
-**NOTE:** If you are not comfortable using WordPress shortcodes, this plugin may not be for you.
+**IMPORTANT:** If you are not comfortable using WordPress shortcodes, this plugin may not be for you. Additionally, you must be able to edit your themes main stylesheet in order to add the [necessary CSS](http://wordpress.org/plugins/tabs-shortcodes/other_notes/).
 
 = Features =
 
@@ -96,6 +96,9 @@ Here is some sample CSS to get you started. Make adjustments as necessary if you
 For bug reports or feature requests or if you'd like to contribute to the plugin you can check everything out on [Github](https://github.com/philbuchanan/Tabs-Shortcodes/).
 
 == Changelog ==
+= 1.0.3 =
+* Compatibility with WordPress 3.9
+
 = 1.0.2 =
 * Added the shortcode parameter when calling shortcode_atts()
 
@@ -106,6 +109,9 @@ For bug reports or feature requests or if you'd like to contribute to the plugin
 * Initial release
 
 == Upgrade Notice ==
+= 1.0.3 =
+Compatibility with WordPress 3.9.
+
 = 1.0.2 =
 Added the shortcode parameter when calling shortcode_atts().
 
