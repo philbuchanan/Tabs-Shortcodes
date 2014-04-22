@@ -19,9 +19,9 @@ Adds a few shortcodes to allow for tabbed content.
 = Features =
 
 * Adds two shortcodes for adding a tabbed interface to your site
+* Select a specific tab by URL
 * No default CSS added (you will **need** to [add your own](http://wordpress.org/plugins/tabs-shortcodes/other_notes/))
-* Only adds JavaScript on pages that use the shortcodes
-* Does not require jQuery
+* Only adds JavaScript on pages that use the shortcodes (and doesn't require jQuery)
 
 = The Shortcodes =
 
