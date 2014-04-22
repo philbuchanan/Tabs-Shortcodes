@@ -5,7 +5,7 @@ Donate Link: http://philbuchanan.com/
 Tags: tab, tabs, shortcodes
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 1.0.3
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,7 @@ and
     [tabs]
     [tab title="First Tab"]Content for tab one goes here.[/tab]
     [tab title="Second Tab"]Content for tab two goes here.[/tab]
+    [tab title="Third Tab"]Content for tab three goes here.[/tab]
     [/tabs]
 
 This will output the following HTML:
@@ -45,13 +46,23 @@ This will output the following HTML:
     <ul class="tabs">
         <li><a href="#tab-1" class="active">First Tab</a></li>
         <li><a href="#tab-2">Second Tab</a></li>
+        <li><a href="#tab-3">Third Tab</a></li>
     </ul>
     <section id="tab-1" class="tab active">Content for tab one goes here.</section>
     <section id="tab-2" class="tab">Content for tab two goes here.</section>
+    <section id="tab-3" class="tab">Content for tab three goes here.</section>
 
 = Settings =
 
 There are no settings for the plugin. The only additional setup you will need to do is [add some css](http://wordpress.org/plugins/tabs-shortcodes/other_notes/) to style the tabs however you'd like. Adding the CSS is very important as the tabs will not display as tabs until you do so.
+
+= Selecting a Tab by URL =
+
+You can select a tab by default using a hash in the URL. Simply add `#tab-1` after the trailing / of the URL to select tab number 1. Replace the number with the tab you'd like to select.
+
+This example URL will select tab number 3:
+
+`http://domain.com/your-page/#tab-3`
 
 == Installation ==
 1. Upload the 'tabs-shortcodes' folder to the '/wp-content/plugins/' directory.
@@ -96,6 +107,9 @@ Here is some sample CSS to get you started. Make adjustments as necessary if you
 For bug reports or feature requests or if you'd like to contribute to the plugin you can check everything out on [Github](https://github.com/philbuchanan/Tabs-Shortcodes/).
 
 == Changelog ==
+= 1.1 =
+* Added ability to select a specific tab based on the URL
+
 = 1.0.3 =
 * Compatibility with WordPress 3.9
 
@@ -109,6 +123,9 @@ For bug reports or feature requests or if you'd like to contribute to the plugin
 * Initial release
 
 == Upgrade Notice ==
+= 1.1 =
+Added ability to select a specific tab based on the URL.
+
 = 1.0.3 =
 Compatibility with WordPress 3.9.
 
