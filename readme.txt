@@ -70,6 +70,12 @@ This example URL will select tab number 3:
 3. Add the shortcodes to your content.
 4. Add some [CSS](http://wordpress.org/plugins/tabs-shortcodes/other_notes/#Other-Notes) to your themes stylesheet to make the tabs look the way you want.
 
+== Frequently Asked Questions ==
+
+= Why isn't the JavaScript file loading on my site? =
+
+This is most likely caused by a poorly coded theme. The plugin makes use of the `wp_footer()` function to load the JavaScript file. Check your theme to ensure that the `wp_footer()` function is being called right before the closing `</body>` tag in your themes footer.php file.
+
 == Other Notes ==
 
 = Sample CSS =
