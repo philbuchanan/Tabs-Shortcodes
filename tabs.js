@@ -37,11 +37,13 @@
 	document.getElementById('tabs').onclick = function(event) {
 		event.preventDefault();
 		
-		hideActive();
-		
-		// Set new active tab
-		selectTab(event.target);
-		selectContent(event.target.getAttribute('href'));
+		if (event.target.tagName.toLowerCase() === 'a') {
+			hideActive();
+			
+			// Set new active tab
+			selectTab(event.target);
+			selectContent(event.target.getAttribute('href'));
+		}
 	};
 
 }());

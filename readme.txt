@@ -5,7 +5,7 @@ Donate Link: http://philbuchanan.com/
 Tags: tab, tabs, shortcodes
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -113,6 +113,9 @@ Here is some sample CSS to get you started. Make adjustments as necessary if you
 For bug reports or feature requests or if you'd like to contribute to the plugin you can check everything out on [Github](https://github.com/philbuchanan/Tabs-Shortcodes/).
 
 == Changelog ==
+= 1.1.1 =
+* Fixed breaking tabs when clicking outside tab area
+
 = 1.1 =
 * Added ability to select a specific tab based on the URL
 
@@ -129,6 +132,9 @@ For bug reports or feature requests or if you'd like to contribute to the plugin
 * Initial release
 
 == Upgrade Notice ==
+= 1.1.1 =
+Fixed breaking tabs when clicking outside tab area.
+
 = 1.1 =
 Added ability to select a specific tab based on the URL.
 
