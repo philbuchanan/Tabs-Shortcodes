@@ -1,7 +1,14 @@
 (function() {
 	'use strict';
 	
-	var tabs, tabNumber;
+	var tabs = document.querySelectorAll('ul.tabs li a'),
+		tabNumber = parseInt(tabsShortcodesSettings.open),
+		num;
+	
+	// Set the tab number based on URL hash 'tab-#'
+	if (window.location.hash) {
+		tabNumber = window.location.hash.match(/\d+$/);
+	}
 	
 	// Hide active tab
 	function hideActive() {
@@ -19,17 +26,23 @@
 		document.querySelector(selector).className = 'tab active';
 	}
 	
-	// Set active tab based on URL
-	if (window.location.hash) {
-		tabs = document.querySelectorAll('ul.tabs li a');
-		tabNumber = window.location.hash.match(/\d+$/) - 1;
+	// Set active tab based on tab number (URL hash or shortcode parameter)
+	if (tabNumber) {
+		// Tab number is 0 based
+		num = tabNumber - 1;
 		
 		// Activate the tab if it exists
-		if (tabs[tabNumber]) {
+		if (tabs[num]) {
 			hideActive();
 			
-			selectTab(tabs[tabNumber]);
-			selectContent(window.location.hash);
+			selectTab(tabs[num]);
+			
+			if (window.location.hash) {
+				selectContent(window.location.hash);
+			}
+			else {
+				selectContent('#tab-' + tabNumber);
+			}
 		}
 	}
 	

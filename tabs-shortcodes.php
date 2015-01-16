@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Tabs Shortcodes
  * Description: Adds a few shortcodes to allow for tabbed content.
- * Version: 1.1.1
+ * Version: 1.2
  * Author: Phil Buchanan
  * Author URI: http://philbuchanan.com
  */
@@ -12,8 +12,8 @@ if (!class_exists('Tabs_Shortcodes')) :
 
 class Tabs_Shortcodes {
 
-	static $add_script;
-	static $tab_titles;
+	private $add_script;
+	private $tab_titles;
 	
 	function __construct() {
 	
@@ -23,26 +23,26 @@ class Tabs_Shortcodes {
 		load_plugin_textdomain('tabs_shortcodes', false, dirname($basename) . '/languages/');
 		
 		# Register JavaScript
-		add_action('wp_enqueue_scripts', array(__CLASS__, 'register_script'));
+		add_action('wp_enqueue_scripts', array($this, 'register_script'));
 		
 		# Add shortcodes
-		add_shortcode('tabs', array(__CLASS__, 'tabs_shortcode'));
-		add_shortcode('tab', array(__CLASS__, 'tab_shortcode'));
+		add_shortcode('tabs', array($this, 'tabs_shortcode'));
+		add_shortcode('tab', array($this, 'tab_shortcode'));
 		
 		# Print script in wp_footer
-		add_action('wp_footer', array(__CLASS__, 'print_script'));
+		add_action('wp_footer', array($this, 'print_script'));
 		
 		# Add link to documentation
-		add_filter("plugin_action_links_$basename", array(__CLASS__, 'add_documentation_link'));
+		add_filter("plugin_action_links_$basename", array($this, 'add_documentation_link'));
 		
 		# Add activation notice (advising user to add CSS)
-		register_activation_hook(__FILE__, array(__CLASS__, 'install'));
-		add_action('admin_notices', array(__CLASS__, 'plugin_activation_notice'));
+		register_activation_hook(__FILE__, array($this, 'install'));
+		add_action('admin_notices', array($this, 'plugin_activation_notice'));
 	
 	}
 	
 	# Installation function
-	static function install() {
+	public function install() {
 	
 		# Add notice option
 		add_option('tabs_shortcodes_notice', 1, '', 'no');
@@ -50,7 +50,7 @@ class Tabs_Shortcodes {
 	}
 	
 	# Add the activation notice
-	static function plugin_activation_notice() {
+	public function plugin_activation_notice() {
 	
 		# Check for option before displaying notice
 		if (get_option('tabs_shortcodes_notice')) {
@@ -71,33 +71,45 @@ class Tabs_Shortcodes {
 	}
 	
 	# Registers the minified tabs JavaScript file
-	static function register_script() {
+	public function register_script() {
 	
 		$min = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
-		wp_register_script('tabs-shortcodes-script', plugins_url('tabs' . $min . '.js', __FILE__), array(), '1.1.1', true);
+		wp_register_script('tabs-shortcodes-script', plugins_url('tabs' . $min . '.js', __FILE__), array(), '1.2', true);
 	
 	}
 	
 	# Prints the minified tabs JavaScript file in the footer
-	static function print_script() {
+	public function print_script() {
 	
 		# Check to see if shortcodes are used on page
-		if (!self::$add_script) return;
+		if (!$this->add_script) return;
 		
 		wp_enqueue_script('tabs-shortcodes-script');
 	
 	}
 	
 	# Tabs wrapper shortcode
-	static function tabs_shortcode($atts, $content = null) {
+	public function tabs_shortcode($atts, $content = null) {
 	
 		# The shortcode is used on the page, so we'll need to load the JavaScript
-		self::$add_script = true;
+		$this->add_script = true;
 		
 		# Create empty titles array
-		self::$tab_titles = array();
+		$this->tab_titles = array();
 		
-		extract(shortcode_atts(array(), $atts, 'tabs'));
+		extract(shortcode_atts(array(
+			'open' => ''
+		), $atts, 'tabs'));
+		
+		if (!$open) {
+			$open = false;
+		}
+		
+		$script_data = array(
+			'open' => $open
+		);
+		
+		wp_localize_script('tabs-shortcodes-script', 'tabsShortcodesSettings', $script_data);
 		
 		# Get all individual tabs content
 		$tab_content = do_shortcode($content);
@@ -106,7 +118,7 @@ class Tabs_Shortcodes {
 		$out = '<ul id="tabs" class="tabs">';
 		
 		# Loop through tab titles
-		foreach (self::$tab_titles as $key => $title) {
+		foreach ($this->tab_titles as $key => $title) {
 			$id = $key + 1;
 			$out .= sprintf('<li><a href="#%s"%s>%s</a></li>',
 				'tab-' . $id,
@@ -124,16 +136,16 @@ class Tabs_Shortcodes {
 	}
 	
 	# Tab item shortcode
-	static function tab_shortcode($atts, $content = null) {
+	public function tab_shortcode($atts, $content = null) {
 	
 		extract(shortcode_atts(array(
 			'title' => ''
 		), $atts, 'tab'));
 		
 		# Add the title to the titles array
-		array_push(self::$tab_titles, $title);
+		array_push($this->tab_titles, $title);
 		
-		$id = count(self::$tab_titles);
+		$id = count($this->tab_titles);
 		
 		return sprintf('<section id="%s" class="tab%s">%s</section>',
 			'tab-' . $id,
@@ -144,7 +156,7 @@ class Tabs_Shortcodes {
 	}
 	
 	# Add documentation link on plugin page
-	static function add_documentation_link($links) {
+	public function add_documentation_link($links) {
 	
 		array_push($links, sprintf('<a href="%s">%s</a>',
 			'http://wordpress.org/plugins/tabs-shortcodes/',

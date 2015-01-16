@@ -4,8 +4,8 @@ Author URI: http://philbuchanan.com/
 Donate Link: http://philbuchanan.com/
 Tags: tab, tabs, shortcodes
 Requires at least: 3.3
-Tested up to: 3.9
-Stable tag: 1.1.1
+Tested up to: 4.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,14 @@ This will output the following HTML:
 = Settings =
 
 There are no settings for the plugin. The only additional setup you will need to do is [add some css](http://wordpress.org/plugins/tabs-shortcodes/other_notes/) to style the tabs however you'd like. Adding the CSS is very important as the tabs will not display as tabs until you do so.
+
+= Selecting a Tab by Default =
+
+You can select a tab by default by added the tab number as an option in the opening `[tabs]` shortcode like this: 
+
+`[tabs open="2"]`
+
+This will open the second tab when the page loads.
 
 = Selecting a Tab by URL =
 
@@ -113,6 +121,10 @@ Here is some sample CSS to get you started. Make adjustments as necessary if you
 For bug reports or feature requests or if you'd like to contribute to the plugin you can check everything out on [Github](https://github.com/philbuchanan/Tabs-Shortcodes/).
 
 == Changelog ==
+= 1.2 =
+* Added an option to open a specific tab by default
+* Now compatible up to WordPress 4.1
+
 = 1.1.1 =
 * Fixed breaking tabs when clicking outside tab area
 
@@ -132,6 +144,9 @@ For bug reports or feature requests or if you'd like to contribute to the plugin
 * Initial release
 
 == Upgrade Notice ==
+= 1.2 =
+Added an option to open a specific tab by default.
+
 = 1.1.1 =
 Fixed breaking tabs when clicking outside tab area.
 
